@@ -18,7 +18,7 @@ SKIN_TYPES = [
     "pale skin", "fair skin", "tan skin", "dark skin", "olive skin",
     "freckled skin", "textured skin with pores", "oily skin", "wet skin", "sweaty skin",
     "shiny skin", "goosebumps", "sun-damaged skin", "perfect skin", "soft skin",
-    "light skin", "brown skin", "black skin", "body paint", "tattoo", "Random"
+    "light skin", "brown skin", "black skin", "body paint", "tattoo"
 ]
 
 HAIR_COLORS = [
@@ -40,57 +40,89 @@ EYE_COLORS = [
     "aqua_eyes", "gold_eyes", "yellow_eyes", "pink_eyes", "black_eyes"
 ]
 
-# Pony/Danbooru tag lists (male + female) for ComfyUI dropdowns
+# Pony/Danbooru tag lists (male + female) for ComfyUI dropdowns — SDXL Pony recognized
 ALL_HAIRSTYLES = [
     "Random",
     "straight_hair", "curly_hair", "wavy_hair", "long straight", "long wavy",
-    "messy_hair", "messy bun", "bob cut", "inverted_bob", "princess_cut", "bowl_cut",
-    "hime cut", "hair_flaps", "bangs", "air_bangs", "blunt_bangs", "side_blunt_bangs",
-    "swept bangs", "asymmetric bangs", "braided_bangs", "ponytail", "twintails", "twin tails",
-    "short_ponytail", "side_ponytail", "high_ponytail", "low_twintails", "short_twintails",
-    "uneven_twintails", "tri_tails", "quad_tails", "tied_hair", "low_tied_hair",
-    "braid", "french_braid", "braided ponytail", "twin_braids", "short_braid", "long_braid",
-    "braided_bun", "braided_ponytail", "crown_braid", "multiple_braids", "side_braid",
-    "hair_bun", "double_bun", "single_hair_bun", "ballet_hair_bun", "doughnut_hair_bun",
-    "heart_hair_bun", "half_updo", "half_up_braid", "half_up_half_down_braid",
-    "pointy_hair", "ahoge", "heart_shaped_ahoge", "antenna_hair", "sideburns", "long_sideburns",
-    "sidelocks", "hair_over_one_eye", "hair_over_eyes", "shaved side", "undercut",
-    "afro", "huge_afro", "spiked_hair", "dreadlocks", "cornrows", "boxing_braids",
-    "mullet", "pompadour", "quiff", "messy quiff", "short curly", "ringlets",
-    "crew cut", "buzz cut", "flattop", "fade", "man bun", "bald",
-    "hair_slicked_back", "slicked back", "side part", "hair_pulled_back", "hair_comb_over",
-    "very_short_hair", "very_long_hair", "absurdly_long_hair", "wolf cut",
-    "mohawk", "chonmage", "okappa", "front_braid", "low_twin_braids", "tri_braids",
-    "japari_bun", "arched_bangs", "curtained_hair", "wispy_bangs", "hair_between_eyes",
-    "widow's peak", "drill_hair", "twin_drills", "beehive_hairdo", "flower_shaped_hair",
-    "long flowing", "updo", "short textured", "wolf cut"
+    "messy_hair", "messy bun", "bob cut", "inverted_bob", "princess_cut", "princess_head", "bowl_cut",
+    "hime cut", "hime_cut", "hair_flaps", "bangs", "air_bangs", "blunt_bangs", "side_blunt_bangs",
+    "centre parting bangs", "swept bangs", "swept_bangs", "asymmetric bangs", "braided_bangs",
+    "ponytail", "twintails", "twin tails", "short_ponytail", "side_ponytail", "high_ponytail",
+    "low_twintails", "short_twintails", "uneven_twintails", "tri_tails", "quad_tails", "quin_tails",
+    "tied_hair", "low_tied_hair", "multi-tied_hair", "braid", "french_braid", "braiding_hair",
+    "braided ponytail", "twin_braids", "short_braid", "long_braid", "braided_bun", "braided_ponytail",
+    "crown_braid", "multiple_braids", "side_braid", "hair_bun", "double_bun", "single_hair_bun",
+    "ballet_hair_bun", "doughnut_hair_bun", "heart_hair_bun", "triple_bun", "cone_hair_bun",
+    "half_updo", "half_up_braid", "half_up_half_down_braid", "pointy_hair", "feather_hair",
+    "bow-shaped_hair", "lone_nape_hair", "shag haircut", "ahoge", "heart_shaped_ahoge",
+    "star_shaped_ahoge", "antenna_hair", "sideburns", "long_sideburns", "sidelocks",
+    "hair_over_one_eye", "hair_over_eyes", "shaved side", "undercut", "afro", "huge_afro",
+    "spiked_hair", "dreadlocks", "cornrows", "boxing_braids", "mullet", "pompadour", "quiff",
+    "messy quiff", "short curly", "ringlets", "crew cut", "buzz cut", "flattop", "fade",
+    "man bun", "bald", "hair_slicked_back", "slicked back", "side part", "hair_pulled_back",
+    "hair_comb_over", "very_short_hair", "very_long_hair", "absurdly_long_hair", "wolf cut",
+    "wolf_cut", "mohawk", "chonmage", "okappa", "front_braid", "front_ponytail", "low_twin_braids",
+    "tri_braids", "quad_braids", "japari_bun", "arched_bangs", "asymmetrical_bangs",
+    "bangs_pinned_back", "crossed_bangs", "choppy_bangs", "diagonal_bangs", "dyed_bangs",
+    "fanged_bangs", "long_bangs", "parted_bangs", "curtained_hair", "wispy_bangs", "short_bangs",
+    "hair_between_eyes", "sidelocks_tied_back", "single_sidelock", "widow's peak", "huge_ahoge",
+    "hair_intakes", "single_hair_intake", "asymmetrical_sidelocks", "drill_sidelocks",
+    "low-tied_sidelocks", "drill_hair", "twin_drills", "tri_drills", "beehive_hairdo",
+    "flower_shaped_hair", "twisted_hair", "ooseledets", "hair_scarf", "one_side_up",
+    "two_side_up", "low_braided_long_hair", "low_tied_long_hair", "mizura", "nihongami",
+    "folded_ponytail", "split_ponytail", "star-shaped_hair", "shiny_hair", "glowing_hair",
+    "liquid_hair", "crystal_hair", "translucent_hair", "polka_dot_hair", "tentacle_hair",
+    "hair_vines", "split-color_hair", "hair_half_undone", "ruffling_hair", "expressive_hair",
+    "bouncing_hair", "flipped_hair", "hair_rings", "single_hair_ring", "long flowing", "updo",
+    "short textured"
 ]
 
 ALL_CLOTHING = [
     "Random",
     "nude", "lingerie", "lace underwear", "bikini", "micro bikini", "one-piece swimsuit",
-    "shell_bikini", "frilled_swimsuit", "front_zipper_swimsuit",
+    "shell_bikini", "frilled_swimsuit", "front_zipper_swimsuit", "bikesuit", "wrestling_outfit",
     "evening_gown", "evening gown", "cocktail_dress", "cocktail dress", "gown", "wedding_dress",
-    "sundress", "summer dress", "sleeveless_dress", "strapless_dress", "backless_dress",
+    "canonicals", "sundress", "summer dress", "sleeveless_dress", "strapless_dress", "backless_dress",
     "halter_dress", "sailor_dress", "pinafore_dress", "frilled_dress", "sweater_dress",
     "pleated_dress", "pencil_dress", "cheongsam", "china_dress", "off-shoulder_dress",
-    "maid", "miko", "school_uniform", "sailor", "serafuku", "naval_uniform", "military_uniform",
+    "armored_dress", "fur-trimmed_dress", "lace-trimmed_dress", "collared_dress", "layered_dress",
+    "multicolored_dress", "striped_dress", "checkered_skirt", "polka_dot_dress", "plaid_dress",
+    "print_dress", "ribbed_dress", "short_jumpsuit", "maid", "miko", "school_uniform", "sailor",
+    "serafuku", "sailor_senshi_uniform", "summer_uniform", "naval_uniform", "military_uniform",
     "business_suit", "business suit", "nurse", "chef_uniform", "labcoat", "cheerleader",
-    "band_uniform", "space_suit", "leotard", "cheongsam", "hanbok", "japanese_clothes",
-    "hoodie", "pajamas", "nightgown", "sleepwear", "yukata", "robe", "cloak", "hooded_cloak",
-    "winter_clothes", "down jacket", "gym_uniform", "athletic_leotard", "volleyball_uniform",
-    "leather_jacket", "leather jacket", "biker_clothes", "letterman_jacket",
-    "t-shirt", "off-shoulder_shirt", "collared_shirt", "collared shirt", "dress_shirt", "sailor_shirt",
-    "cropped_shirt", "polo_shirt", "polo shirt", "tank_top", "tank top", "vest", "cardigan",
-    "sweater", "virgin killer sweater", "hooded_sweater", "striped_sweater",
-    "blazer", "overcoat", "trench_coat", "leather_jacket", "military_jacket", "parka",
-    "skirt", "miniskirt", "pleated_skirt", "pencil_skirt", "denim_skirt", "long_skirt",
-    "tight pants", "yoga pants", "jeans", "cargo_pants", "track_pants", "bike_shorts",
-    "boxers", "briefs", "swim trunks", "tuxedo", "tailored suit",
-    "fishnets", "thighhighs", "latex bodysuit", "towel", "apron", "maid_apron",
-    "armor", "bikini_armor", "plate_armor", "fantasy armor", "power_armor",
-    "corset", "bustier", "harness", "lab coat", "mechanic jumpsuit", "biker vest",
-    "streetwear", "loungewear", "casual", "cyberpunk techwear"
+    "band_uniform", "space_suit", "leotard", "domineering", "hanbok", "japanese_clothes",
+    "chinese_style", "traditional_clothes", "uchikake", "sleeveless_kimono", "print_kimono",
+    "hanten_(clothes)", "korean_clothes", "gothic", "lolita", "gothic_lolita", "byzantine_fashion",
+    "tropical cloth", "indian_style", "Ao_Dai", "ainu_clothes", "arabian_clothes", "egyptian_clothes",
+    "hawaii costume", "furisode", "animal_costume", "bunny_costume", "cat_costume", "santa_costume",
+    "hoodie", "pajamas", "nightgown", "sleepwear", "print_pajamas", "yukata", "hanfu", "Taoist robe",
+    "robe", "cloak", "hooded_cloak", "winter_clothes", "down jacket", "halloween_costume", "loungewear",
+    "santa", "harem_outfit", "shrug_clothing", "gym_uniform", "athletic_leotard", "volleyball_uniform",
+    "tennis_uniform", "baseball_uniform", "letterman_jacket", "biker_clothes",
+    "t-shirt", "blouse", "off-shoulder_shirt", "collared_shirt", "collared shirt", "dress_shirt",
+    "sailor_shirt", "cropped_shirt", "criss-cross_halter", "frilled_shirt", "sweatshirt",
+    "hawaiian_shirt", "kappougi", "polo_shirt", "polo shirt", "print_shirt", "sleeveless_hoodie",
+    "sleeveless_shirt", "striped_shirt", "tank_top", "tank top", "vest", "waistcoat", "cardigan",
+    "sweater", "virgin killer sweater", "hooded_sweater", "striped_sweater", "pullover_sweaters",
+    "ribbed_sweater", "sweater_vest", "backless_sweater", "blazer", "overcoat", "double-breasted",
+    "long_coat", "winter_coat", "hooded_coat", "fur_coat", "fur-trimmed_coat", "duffel_coat",
+    "parka", "cropped_jacket", "track_jacket", "hooded_track_jacket", "military_jacket",
+    "camouflage_jacket", "leather_jacket", "leather jacket", "trench_coat", "windbreaker", "raincoat",
+    "tunic", "cape", "capelet", "hagoromo", "waist_apron", "maid_apron", "clothes_around_waist",
+    "jacket_around_waist", "sweater_around_waist", "loincloth", "corset", "bustier", "girdle",
+    "armor", "bikini_armor", "full_armor", "plate_armor", "japanese_armor", "kusazuri",
+    "power_armor", "helmet", "kabuto", "off-shoulder_armor", "shoulder_armor", "muneate",
+    "breastplate", "faulds", "skirt", "miniskirt", "mini_skirt", "skirt_suit", "bikini_skirt",
+    "pleated_skirt", "pencil_skirt", "bubble_skirt", "tutu", "ballgown", "denim_skirt",
+    "suspender_skirt", "long_skirt", "high-waist_skirt", "chiffon_skirt", "lace_skirt",
+    "layered_skirt", "print_skirt", "flared_skirt", "floral_skirt", "jumpsuit", "hot_pants",
+    "striped_shorts", "suspender_shorts", "denim_shorts", "puffy_shorts", "dolphin_shorts",
+    "tight pants", "yoga pants", "track_pants", "bike_shorts", "gym_shorts", "pants",
+    "puffy_pants", "pumpkin_pants", "hakama", "hakama_pants", "harem_pants", "bloomers", "buruma",
+    "jeans", "cargo_pants", "camouflage_pants", "capri_pants", "chaps", "plaid_pants",
+    "striped_pants", "torn_jeans", "boxers", "briefs", "swim trunks", "tuxedo", "tailored suit",
+    "fishnets", "thighhighs", "latex bodysuit", "towel", "apron", "harness", "rigging",
+    "lab coat", "mechanic jumpsuit", "biker vest", "streetwear", "casual", "cyberpunk techwear"
 ]
 
 ALL_BODY_TYPES = [
@@ -132,31 +164,38 @@ BREAST_SHAPES = [
 
 LOCATIONS = [
     "Random",
-    "simple white background", "simple black background", "grey background", "photography studio",
-    "bustling city street", "cyberpunk city at night", "luxury penthouse", "cozy bedroom",
-    "messy bedroom", "modern kitchen", "bathroom", "shower stall", "locker room",
-    "neon-lit club", "bar counter", "library", "cafe terrace", "classroom", "office cubicle",
-    "hospital room", "garage", "dungeon", "sci-fi spaceship interior", "space station corridor",
-    "beach sunset", "dense forest", "flower garden", "abandoned warehouse", "rainy street",
-    "snowy mountain", "desert dunes", "tropical jungle", "meadow with flowers",
-    "onsen", "in a pool", "rooftop at night", "autumn park", "cherry blossom grove",
-    "love hotel", "tatami room", "public train"
+    "simple white background", "white_background", "simple black background", "black_background",
+    "grey background", "grey_background", "blue_background", "gradient_background", "simple_background",
+    "photography studio", "bustling city street", "cyberpunk city at night", "luxury penthouse",
+    "cozy bedroom", "bedroom", "messy bedroom", "modern kitchen", "kitchen", "bathroom", "shower stall",
+    "locker room", "neon-lit club", "bar counter", "library", "cafe terrace", "classroom",
+    "office cubicle", "office", "hospital room", "garage", "dungeon", "gym", "gymnasium",
+    "sci-fi spaceship interior", "space station corridor", "beach", "beach sunset", "dense forest",
+    "forest", "flower garden", "garden", "abandoned warehouse", "rainy street", "street",
+    "snowy mountain", "mountain", "desert dunes", "desert", "tropical jungle", "meadow with flowers",
+    "onsen", "in a pool", "pool", "rooftop", "rooftop at night", "balcony", "autumn park",
+    "cherry blossom grove", "love hotel", "tatami room", "public train", "outdoors", "indoors",
+    "castle", "temple", "church", "dojo", "cave", "underwater", "stadium", "concert", "bar", "club"
 ]
 
 LIGHTING = [
     "Random",
     "natural sunlight", "golden hour", "soft overcast", "cinematic lighting",
-    "studio softbox", "hard rim lighting", "neon lights", "volumetric fog",
-    "dark moody lighting", "moonlight", "bioluminescent glow", "camera flash",
-    "dimly lit", "candlelight", "god rays", "lens flare"
+    "studio softbox", "studio_lighting", "hard rim lighting", "rim_lighting", "backlighting",
+    "neon lights", "volumetric fog", "dark moody lighting", "dramatic_lighting",
+    "moonlight", "bioluminescent glow", "camera flash", "dimly lit", "candlelight",
+    "god rays", "lens flare", "soft_lighting", "harsh_lighting", "outdoor_lighting",
+    "indoor_lighting", "overcast", "night", "day", "sunset", "sunrise", "silhouette"
 ]
 
 CAMERAS = [
     "Random",
-    "85mm portrait lens", "35mm street lens", "24mm wide angle",
-    "50mm standard lens", "200mm telephoto", "macro lens", "fisheye lens",
+    "85mm portrait lens", "35mm street lens", "24mm wide angle", "50mm standard lens",
+    "200mm telephoto", "macro lens", "fisheye lens", "wide_shot", "wide angle view",
     "CCTV footage", "Polaroid style", "GoPro view", "drone shot",
-    "from below", "from above", "dutch angle", "close-up", "cowboy shot", "full body",
+    "from below", "from above", "dutch angle", "close-up", "extreme close-up",
+    "cowboy shot", "full body", "full body shot", "upper body", "medium shot",
+    "long shot", "bird's eye view", "low angle", "high angle", "over_shoulder",
     "pov", "looking at viewer"
 ]
 
