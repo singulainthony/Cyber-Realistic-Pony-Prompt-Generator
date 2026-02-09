@@ -1,6 +1,42 @@
 # ComfyUI-CyberRealistic-Pony
 
-Custom nodes for generating prompts for Cyber Realistic Pony models in ComfyUI.
+The CyberRealistic Pony Prompt Suite is a set of tools for ComfyUI. It is made specifically for Pony XL models. These tools help you write the special "tags" needed for these models so you don't have to learn them all yourself. It makes getting realistic photos much easier.
+
+🚀 Main Features
+
+1. Automatic Quality Tags
+
+The tool automatically adds the "score tags" (like score_9) that Pony models need to look good. It also lets you choose if you want the image to be "Safe," "Questionable," or "Explicit" without messing up the prompt.
+
+2. Character Isolation (Multi-Person Support)
+
+Usually, when you have two people in a picture, their clothes or hair colors get mixed up. These nodes stop that:
+
+Subject Node: Use one for each person to set their hair, skin, clothes, and pose.
+Master Node: Puts everyone together using a "BREAK" command. This keeps each person's details separate.
+3. Randomize Everything
+
+Most options have a "Random" setting. If you aren't sure what you want, let the tool pick for you.
+
+Random Subject: Click one button to create a completely random person.
+Seed Control: If you like what the "Random" button picked, just keep the same "Seed" number to save that look.
+4. Adult Content (NSFW)
+
+If you turn on the NSFW switch, you get more options:
+
+Sex Acts: A list of different positions and activities.
+Body Details: Options to change specific body parts and details.
+Smart Cleaning: It automatically adds "negative" tags to keep the image looking like a real photo instead of a drawing.
+🛠 What It Can Do
+
+Build Scenes: You can connect up to 4 people to one scene.
+Your Own Words: You can still type in your own tags if you want to add something specific that isn't in the list.
+Force Realism: It is programmed to make the AI try harder to create real-looking photos.
+⚠️ Things to Know
+
+Pony Models Only: This works best with "Pony" style models. It might not work well with basic SDXL or older models.
+It Outputs Text: This node creates the words for your prompt. You still need to connect it to a "CLIP Text Encode" node to actually make the image.
+Basic Lists: The lists are very long, but for very specific items, you will still need to type them in the "Custom Tags" box.
 
 ## Nodes
 
