@@ -1,49 +1,30 @@
 # ComfyUI-CyberRealistic-Pony
 
-The CyberRealistic Pony Prompt Suite is a set of tools for ComfyUI. It is made specifically for Pony XL models. These tools help you write the special "tags" needed for these models so you don't have to learn them all yourself. It makes getting realistic photos much easier.
-
-🚀 Main Features
-
-1. Automatic Quality Tags
-
-The tool automatically adds the "score tags" (like score_9) that Pony models need to look good. It also lets you choose if you want the image to be "Safe," "Questionable," or "Explicit" without messing up the prompt.
-
-2. Character Isolation (Multi-Person Support)
-
-Usually, when you have two people in a picture, their clothes or hair colors get mixed up. These nodes stop that:
-
-Subject Node: Use one for each person to set their hair, skin, clothes, and pose.
-Master Node: Puts everyone together using a "BREAK" command. This keeps each person's details separate.
-3. Randomize Everything
-
-Most options have a "Random" setting. If you aren't sure what you want, let the tool pick for you.
-
-Random Subject: Click one button to create a completely random person.
-Seed Control: If you like what the "Random" button picked, just keep the same "Seed" number to save that look.
-4. Adult Content (NSFW)
-
-If you turn on the NSFW switch, you get more options:
-
-Sex Acts: A list of different positions and activities.
-Body Details: Options to change specific body parts and details.
-Smart Cleaning: It automatically adds "negative" tags to keep the image looking like a real photo instead of a drawing.
-🛠 What It Can Do
-
-Build Scenes: You can connect up to 4 people to one scene.
-Your Own Words: You can still type in your own tags if you want to add something specific that isn't in the list.
-Force Realism: It is programmed to make the AI try harder to create real-looking photos.
-⚠️ Things to Know
-
-Pony Models Only: This works best with "Pony" style models. It might not work well with basic SDXL or older models.
-It Outputs Text: This node creates the words for your prompt. You still need to connect it to a "CLIP Text Encode" node to actually make the image.
-Basic Lists: The lists are very long, but for very specific items, you will still need to type them in the "Custom Tags" box.
+Custom nodes for generating prompts for Cyber Realistic Pony models in ComfyUI.
 
 ## Nodes
 
-- **CyberRealistic Subject** – Build subject prompts (gender, age, ethnicity, body, hair, clothing, pose, etc.).
-- **CyberRealistic Master Prompt** – Combine subjects with scene/location/lighting/camera and output positive + negative prompts.
+- **CyberRealistic Subject** – Legacy mixed-gender subject builder (kept for backwards compatibility with existing graphs).
+- **CyberRealistic Female Subject** – Female-focused subject node (female-only body types, hairstyles, tops, breasts, etc.).
+- **CyberRealistic Male Subject** – Male-focused subject node (male-only body types, hairstyles, tops, etc.).
+- **CyberRealistic Master Prompt** – Combines up to 4 subject prompts with scene/location/lighting/camera and outputs positive + negative prompts (with optional sex act/position controls).
 
-Both appear under the **CyberRealistic Pony** category in the Add Node menu.
+All nodes appear under the **CyberRealistic Pony** category in the Add Node menu.
+
+### High-level behavior changes
+
+- **Split clothing controls** in the subject nodes: full outfit, top, bottom, headwear, footwear, accessories, plus freeform extra clothing tags.
+- **Extra anatomy controls**: legs, butt, face shape, expressions, and hair length can all be steered via dedicated dropdowns.
+- **NSFW helpers** in the subject nodes: optional auto-modifiers that inject common NSFW detail tags and gender-appropriate anatomy.
+- **Sex act / position prioritization** in the master node:
+  - `sex_act` and `sex_position` (when `nsfw_mode` is enabled) are placed near the beginning of the positive prompt.
+  - Under the default score scheme they are strongly weighted (e.g. `(:3)`), so the model is more likely to follow them.
+- **Scene order** in the master node now follows: quality/score/source → (optional sex act/position) → subject count tags → location/lighting/camera → subject strings.
+- **Score/source/style helpers** in the master node:
+  - `score_scheme` presets (e.g. default high, score_9 only).
+  - `source_bias` selector (photography, anime, pony, etc.).
+  - `strong_anime_bias` toggle that relaxes anime/cartoon in the negative prompt.
+  - `style_preset` (photorealistic, anime-leaning, sketch, studio glamour) that injects small curated style bundles.
 
 ## If nodes don’t appear
 
@@ -68,9 +49,9 @@ Both appear under the **CyberRealistic Pony** category in the Add Node menu.
 
 ---
 
-## Summary of new SDXL Pony tags added
+## Summary of SDXL Pony / Danbooru tags
 
-Tags were sourced from Pony Diffusion XL / Danbooru reference lists (Civitai articles, Danbooru tag groups) and merged into each dropdown. New or previously missing tags include:
+Tags were sourced from Pony Diffusion XL / Danbooru reference lists (Civitai articles, Danbooru tag groups) and merged into each dropdown. New or previously missing tags include (not exhaustive):
 
 - **Hairstyles:** `princess_head`, `centre parting bangs`, `multi-tied_hair`, `braiding_hair`, `feather_hair`, `bow-shaped_hair`, `lone_nape_hair`, `shag haircut`, `star_shaped_ahoge`, `triple_bun`, `cone_hair_bun`, `crossed_bangs`, `choppy_bangs`, `diagonal_bangs`, `dyed_bangs`, `fanged_bangs`, `long_bangs`, `parted_bangs`, `hair_intakes`, `single_hair_intake`, `asymmetrical_sidelocks`, `drill_sidelocks`, `low-tied_sidelocks`, `ooseledets`, `hair_scarf`, `one_side_up`, `two_side_up`, `low_braided_long_hair`, `low_tied_long_hair`, `mizura`, `nihongami`, `folded_ponytail`, `split_ponytail`, `star-shaped_hair`, `shiny_hair`, `glowing_hair`, `liquid_hair`, `crystal_hair`, `translucent_hair`, `polka_dot_hair`, `tentacle_hair`, `hair_vines`, `split-color_hair`, `hair_half_undone`, `ruffling_hair`, `expressive_hair`, `bouncing_hair`, `flipped_hair`, `hair_rings`, `single_hair_ring`, `quin_tails`, `front_ponytail`, `quad_braids`, and others.
 - **Clothing:** `canonicals`, `bikesuit`, `wrestling_outfit`, `sailor_senshi_uniform`, `summer_uniform`, `domineering`, `chinese_style`, `traditional_clothes`, `uchikake`, `sleeveless_kimono`, `print_kimono`, `hanten_(clothes)`, `gothic`, `lolita`, `gothic_lolita`, `byzantine_fashion`, `tropical cloth`, `indian_style`, `Ao_Dai`, `ainu_clothes`, `arabian_clothes`, `egyptian_clothes`, `hawaii costume`, `furisode`, `animal_costume`, `bunny_costume`, `cat_costume`, `santa_costume`, `print_pajamas`, `hanfu`, `Taoist robe`, `halloween_costume`, `harem_outfit`, `shrug_clothing`, `tennis_uniform`, `baseball_uniform`, `blouse`, `criss-cross_halter`, `kappougi`, `sleeveless_hoodie`, `waistcoat`, `pullover_sweaters`, `ribbed_sweater`, `sweater_vest`, `backless_sweater`, `double-breasted`, `long_coat`, `winter_coat`, `hooded_coat`, `fur_coat`, `duffel_coat`, `cropped_jacket`, `track_jacket`, `hooded_track_jacket`, `camouflage_jacket`, `windbreaker`, `raincoat`, `tunic`, `cape`, `capelet`, `hagoromo`, `clothes_around_waist`, `jacket_around_waist`, `sweater_around_waist`, `loincloth`, `girdle`, `full_armor`, `japanese_armor`, `kusazuri`, `helmet`, `kabuto`, `off-shoulder_armor`, `shoulder_armor`, `muneate`, `breastplate`, `faulds`, `mini_skirt`, `skirt_suit`, `bikini_skirt`, `bubble_skirt`, `tutu`, `ballgown`, `high-waist_skirt`, `chiffon_skirt`, `lace_skirt`, `flared_skirt`, `floral_skirt`, `jumpsuit`, `hot_pants`, `suspender_shorts`, `dolphin_shorts`, `gym_shorts`, `puffy_pants`, `pumpkin_pants`, `hakama`, `hakama_pants`, `harem_pants`, `bloomers`, `buruma`, `camouflage_pants`, `capri_pants`, `chaps`, `plaid_pants`, `torn_jeans`, `rigging`, and others.
@@ -82,9 +63,9 @@ Duplicate `Random` in **Skin types** was removed. All dropdown options now align
 
 ---
 
-## All tags (by category)
+## Tag options (by category – abbreviated)
 
-Below are all options available in the node dropdowns. Each list includes `Random` where the node supports random selection.
+Below are the main options available in the node dropdowns. This list is **not guaranteed to be perfectly in sync** with `nodes.py` at all times; when in doubt, refer to `nodes.py` for the authoritative, full tag sets. Each list includes `Random` where the node supports random selection.
 
 ### Genders
 `female`, `male`, `futa`, `other`, `Random`
